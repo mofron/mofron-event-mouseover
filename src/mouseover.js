@@ -3,16 +3,12 @@
  */
 mofron.event.MouseOver = class extends mofron.event.Base {
     
-    event () {
+    eventFunc () {
         try {
             var cbf = this.cb_func;
             var cbp = this.cb_parm;
             
-            if (false === this.target.isPushed()) {
-                throw new Error('target is not ready');
-            }
-            var tgt_dom = document.querySelector('#'+ this.target.getId());
-            tgt_dom.addEventListener('mouseover',function() {
+            this.target.getDom().addEventListener('mouseover',function() {
                 try {
                     if (null != cbf) {
                         cbf(cbp);

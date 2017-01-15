@@ -1,6 +1,6 @@
 {
   "name": "mofron-event-mouseover",
-  "version": "0.0.2",
+  "version": "0.3.2",
   "description": "MouseOver event for mofron",
   "main": "dist/mouseover.js",
   "scripts": {
