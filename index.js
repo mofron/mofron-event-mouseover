@@ -1,14 +1,20 @@
 /**
- * @file HoverOut.js
+ * @file MouseOut.js
+ * @author simpart
  */
-mofron.event.MouseOver = class extends mofron.event.Base {
+
+/**
+ * @class event.MouseOver
+ * @brief mouse over event for mofron component
+ */
+mofron.event.MouseOver = class extends mofron.Event {
     
-    eventFunc () {
+    eventConts () {
         try {
-            var cbf = this.cb_func;
-            var cbp = this.cb_parm;
+            var cbf = this.func;
+            var cbp = this.parm;
             
-            this.target.getDom().addEventListener('mouseover',function() {
+            this.target.getRawDom().addEventListener('mouseover',function() {
                 try {
                     if (null != cbf) {
                         cbf(cbp);
