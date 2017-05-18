@@ -15,7 +15,7 @@ mofron.event.MouseOver = class extends mofron.Event {
             this.name('MouseOver');
             this.prmOpt(
                 ('function' === typeof fnc) ?
-                {'handlar' : new mofron.Param(fnc, prm)} : fnc
+                {'handler' : new mofron.Param(fnc, prm)} : fnc
             );
         } catch (e) {
             console.error(e.stack);
@@ -25,7 +25,7 @@ mofron.event.MouseOver = class extends mofron.Event {
     
     eventConts (tgt_dom) {
         try {
-            var evt_func = this.handlar();
+            var evt_func = this.handler();
             tgt_dom.getRawDom().addEventListener('mouseover',function() {
                 try {
                     if (null != evt_func[0]) {
