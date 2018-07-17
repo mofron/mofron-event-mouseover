@@ -9,33 +9,34 @@
  */
 mofron.event.MouseOver = class extends mofron.Event {
     
-    constructor (fnc, prm) {
+    constructor (po, p1) {
         try {
             super();
             this.name('MouseOver');
-            this.prmOpt(
-                ('function' === typeof fnc) ?
-                {'handler' : new mofron.Param(fnc, prm)} : fnc
-            );
+            this.prmOpt(po, p1);
         } catch (e) {
             console.error(e.stack);
             throw e;
         }
     }
     
-    eventConts (tgt_dom) {
+    contents (tgt_dom) {
         try {
             var evt_func = this.handler();
-            tgt_dom.getRawDom().addEventListener('mouseover',function() {
-                try {
-                    if (null != evt_func[0]) {
-                        evt_func[0](evt_func[1]);
+            tgt_dom.getRawDom().addEventListener(
+                'mouseover',
+                () => {
+                    try {
+                        if (null != evt_func[0]) {
+                            evt_func[0](evt_func[1]);
+                        }
+                    } catch (e) {
+                        console.error(e.stack);
+                        throw e;
                     }
-                } catch (e) {
-                    console.error(e.stack);
-                    throw e;
-                }
-            },false);
+                },
+                false
+            );
         } catch (e) {
             console.error(e.stack);
             throw e;
@@ -43,3 +44,4 @@ mofron.event.MouseOver = class extends mofron.Event {
     }
 }
 module.exports = mofron.event.MouseOver;
+/* end of file */
