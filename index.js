@@ -2,19 +2,19 @@
  * @file MouseOut.js
  * @author simpart
  */
-
+const mf = require('mofron');
 /**
  * @class event.MouseOver
  * @brief mouse over event for mofron component
  */
-mofron.event.MouseOver = class extends mofron.Event {
+mf.event.MouseOver = class extends mf.Event {
     
-    constructor (po, p1) {
+    constructor (po) {
         try {
             super();
             this.name('MouseOver');
-            this.prmMap('handler', 'handlerPrm');
-            this.prmOpt(po, p1);
+            this.prmMap('handler');
+            this.prmOpt(po);
         } catch (e) {
             console.error(e.stack);
             throw e;
@@ -23,27 +23,22 @@ mofron.event.MouseOver = class extends mofron.Event {
     
     contents (tgt_dom) {
         try {
-            let evt_func = this.handler();
-            let evt_cmp  = this.component();
+            let evt_obj = this;
             tgt_dom.getRawDom().addEventListener(
                 'mouseover',
-                () => {
-                    try {
-                        if (null != evt_func[0]) {
-                            evt_func[0](evt_cmp,evt_func[1]);
-                        }
-                    } catch (e) {
+                () => { 
+                    try { evt_obj.execHandler(); } catch (e) {
                         console.error(e.stack);
                         throw e;
-                    }
-                },
+                    }   
+                },  
                 false
-            );
+            );  
         } catch (e) {
             console.error(e.stack);
             throw e;
         }
     }
 }
-module.exports = mofron.event.MouseOver;
+module.exports = mf.event.MouseOver;
 /* end of file */
